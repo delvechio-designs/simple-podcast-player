@@ -15,7 +15,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     ws.load(url);
 
     const fmt=s=>`${String(Math.floor(s/60)).padStart(2,'0')}:${String(Math.floor(s%60)).padStart(2,'0')}`;
-    play.onclick=()=>{ws.playPause();play.textContent=ws.isPlaying()?'❚❚':'▶';};
+    play.onclick = () => {
+  ws.playPause();
+  play.classList.toggle('playing', ws.isPlaying());
+};
+ws.on('finish', ()=>play.classList.remove('playing'));
+
     card.querySelectorAll('[data-skip]').forEach(btn=>btn.onclick=()=>ws.setCurrentTime(ws.getCurrentTime()+parseFloat(btn.dataset.skip)));
     speed.onclick=()=>{const n=ws.getPlaybackRate()===1?1.5:ws.getPlaybackRate()===1.5?2:1;ws.setPlaybackRate(n);speed.textContent=n+'×';};
 
