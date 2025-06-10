@@ -26,3 +26,29 @@ add_action('save_post_spp_episode', function ($post_id) {
   if (isset($_POST['spp_audio_url']))  update_post_meta($post_id, 'spp_audio_url', esc_url_raw($_POST['spp_audio_url']));
   if (isset($_POST['spp_subtitle']))   update_post_meta($post_id, 'spp_subtitle', sanitize_text_field($_POST['spp_subtitle']));
 });
+
+<?php
+/* --------------------------------------------------
+ * Show [podcast_player id="123"] in the CPT table
+ * -------------------------------------------------- */
+
+/* 1.  Add column heading */
+add_filter( 'manage_spp_episode_posts_columns', function ( $cols ) {
+    $cols['spp_shortcode'] = 'Shortcode';
+    return $cols;
+} );
+
+/* 2.  Print the shortcode for each row */
+add_action( 'manage_spp_episode_posts_custom_column', function ( $column, $post_id ) {
+    if ( $column === 'spp_shortcode' ) {
+        echo '<code>[podcast_player id="' . intval( $post_id ) . '"]</code>';
+    }
+}, 10, 2 );
+
+/* 3.  Make the column copy-friendly */
+add_action( 'admin_print_styles-edit.php', function () {
+    if ( get_current_screen()->post_type !== 'spp_episode' ) return;
+    echo '<style>
+        .column-spp_shortcode code{background:#f6f7f7;padding:2px 6px;border-radius:4px;font-size:12px;}
+    </style>';
+});
