@@ -44,7 +44,7 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /* ───── 3. Include modules ───── */
-require_once __DIR__.'/admin-settings.php';
+require_once __DIR__ . '/admin/settings-panel.php';
 require_once __DIR__.'/admin/episode-meta.php';
 require_once __DIR__.'/public/class-player-render.php';
 require_once __DIR__.'/public/shortcodes.php';
