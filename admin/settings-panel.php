@@ -1,14 +1,17 @@
 <?php
 /*────────────  Add “Settings → Podcast Player”  ────────────*/
 add_action( 'admin_menu', function () {
-    add_options_page(
-        'Podcast Player Settings',
-        'Podcast Player',
+    // "edit.php?post_type=spp_episode" is the slug WP gives the CPT menu
+    add_submenu_page(
+        'edit.php?post_type=spp_episode',   // parent slug
+        'Player Settings',                  // page <title>
+        'Settings',                         // sidebar link text
         'manage_options',
         'spp-settings',
         'spp_settings_page'
     );
 });
+
 
 /*────────────  Register options & enqueue assets  ────────────*/
 add_action( 'admin_init', function () {
