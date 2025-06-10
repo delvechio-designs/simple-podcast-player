@@ -11,11 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
    ───────────────────────────────────────────── */
 function spp_normalize_audio_url( $url ) {
 
-    /* Dropbox  ?dl=0 | ?dl=1 | ?raw=0  →  ?raw=1 */
-    if ( strpos( $url, 'dropbox.com' ) !== false ) {
-        $url = preg_replace( '/\\?(dl|raw)=\\d$/', '', $url );
-        return $url . ( strpos( $url, '?' ) ? '&' : '?' ) . 'raw=1';
-    }
+/* Dropbox: strip everything after .mp3 and force ?raw=1 */
+if ( strpos( $url, 'dropbox.com' ) !== false ) {
+
+    // keep only the part before the first "?"
+    [ $base ] = explode( '?', $url, 2 );
+
+    // convert /scl/fi/<id>/filename.mp3 to /s/filename.mp3
+    $base = preg_replace( '~/scl/fi/[^/]+/(.+)$~', '/s/$1', $base );
+
+    return $base . '?raw=1';
+}
+
 
     /* Firebase Storage  → add ?alt=media */
     if ( strpos( $url, 'firebasestorage.googleapis.com' ) !== false &&
