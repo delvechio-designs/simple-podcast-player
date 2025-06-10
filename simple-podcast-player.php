@@ -6,6 +6,7 @@ GitHub URI:  https://github.com/delvechio-designs/simple-podcast-player
 Description: Buzzsprout-style player with colour panel, playlist mode, GA4 analytics, and Gutenberg/Classic shortcuts.
 Version: 1.2.0
 Author: Delvechio Designs
+Author URI: https://delvechiodesigns.com
 License: GPL-3.0
 */
 defined('ABSPATH') || exit;
