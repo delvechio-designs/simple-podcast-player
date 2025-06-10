@@ -1,7 +1,8 @@
 <?php
 /*
 Plugin Name: Simple Podcast Player
-Plugin URI:  https://github.com/yourname/simple-podcast-player
+Plugin URI:  https://wordpress.org/plugins/simple-podcast-player
+Github URI:  https://github.com/delvechio-designs/simple-podcast-player/
 Description: Buzzsprout‑style embed with waveform, skip controls, GA4 analytics and featured‑image artwork.
 Version: 1.0.1
 Author: Delvechio Designs
