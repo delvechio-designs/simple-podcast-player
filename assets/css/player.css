@@ -13,7 +13,19 @@
 .spp-title{margin:0;font-size:1.45rem;font-weight:600;color:var(--spp-title)}
 .spp-sub{margin:0 0 1rem;color:var(--spp-sub);font-size:.9rem}
 .spp-top{display:flex;align-items:center;gap:1rem}
-.spp-play{width:64px;height:64px;border-radius:50%;background:var(--spp-accent);color:#fff;font-size:6rem;border:none;cursor:pointer}
+.spp-play{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--spp-accent);
+  display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;transition:.2s background;
+}
+.spp-play:hover{background:var(--spp-progress);}
+.spp-icon{width:20px;height:20px;fill:#fff;}
+.spp-pause-icon{display:none;}          /* hidden until playing */
+
+.spp-play.playing .spp-play-icon{display:none;}
+.spp-play.playing .spp-pause-icon{display:block;}
+
 .spp-wave{height:70px;flex:1;width:100%}
 .spp-controls{display:flex;align-items:center;gap:1.25rem;margin-top:.5rem;font-size:.9rem;color:var(--spp-accent)}
 .spp-controls button,.spp-download{border:none;background:none;color:inherit;cursor:pointer;font-size:1rem;text-decoration:none}
